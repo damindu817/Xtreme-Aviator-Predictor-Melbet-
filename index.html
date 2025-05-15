@@ -534,17 +534,8 @@
           lastPlayedSignalId = currentSignal.id;
         }
       }
-      else if (timeUntilSignal <= 8 && timeUntilSignal > 0 && isFirstSignalOfHour) {
-        // Only show loading for first signal of hour
-        if (!loadingStart) {
-          loadingStart = now.getTime();
-          currentState = 'loading';
-          showLoadingAnimation();
-        }
-        oddEl.innerHTML = 'Preparing next prediction...';
-      }
       else {
-        // Waiting for next signal (more than 8 seconds before)
+        // Waiting for next signal
         currentState = 'waiting';
         signalBox.className = 'signal-box waiting';
         signalContent.innerHTML = `
