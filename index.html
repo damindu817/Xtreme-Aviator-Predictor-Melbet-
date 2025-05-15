@@ -298,7 +298,6 @@
     // Create audio context for reliable sound
     let audioContext;
     let beepSound;
-    let beepPlayed = false;
     
     function initAudio() {
       try {
@@ -311,13 +310,13 @@
         
         // Create gain node to control volume
         const gainNode = audioContext.createGain();
-        gainNode.gain.value = 0;
+        gainNode.gain.value = 0.5;
         
         // Connect nodes
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
         
-        // Start oscillator
+        // Start oscillator (it will be stopped after playing)
         oscillator.start();
         
         // Store nodes for later use
@@ -331,17 +330,13 @@
       if (!audioContext) initAudio();
       
       try {
-        if (!beepPlayed) {
-          // Play beep (300ms duration)
-          beepSound.gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
-          beepSound.gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
-          beepPlayed = true;
-          
-          // Reset after 1 second to allow next beep
-          setTimeout(() => {
-            beepPlayed = false;
-          }, 1000);
-        }
+        // Reconnect nodes if needed
+        beepSound.gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+        beepSound.gainNode.connect(audioContext.destination);
+        
+        // Play beep (300ms duration)
+        beepSound.gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+        beepSound.gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
       } catch (e) {
         console.error("Beep play failed:", e);
       }
@@ -423,7 +418,7 @@
     let lastHourChecked = -1;
     let currentState = 'initial-loading'; // 'initial-loading', 'loading', 'active', 'waiting'
     let initialLoad = true;
-    let lastActiveSignalId = null;
+    let lastPlayedSignalId = null;
     let isFirstSignalOfHour = true;
 
     function applyShineEffect(element) {
@@ -472,7 +467,7 @@
         loadingStart = now.getTime();
         currentState = 'loading';
         showLoadingAnimation();
-        lastActiveSignalId = null; // Reset when hour changes
+        lastPlayedSignalId = null; // Reset when hour changes
         isFirstSignalOfHour = true; // Mark first signal of new hour
       }
       
@@ -519,7 +514,7 @@
         loadingStart = now.getTime();
         currentState = 'loading';
         showLoadingAnimation();
-        lastActiveSignalId = null; // Reset for next signal
+        lastPlayedSignalId = null; // Reset for next signal
         isFirstSignalOfHour = false; // No longer first signal
       }
       else if (now >= currentSignal.startTime && now < currentSignal.endTime) {
@@ -534,9 +529,9 @@
         applyShineEffect(oddEl);
         
         // Play beep sound only once when signal becomes active
-        if (lastActiveSignalId !== currentSignal.id) {
+        if (lastPlayedSignalId !== currentSignal.id) {
           playBeep();
-          lastActiveSignalId = currentSignal.id;
+          lastPlayedSignalId = currentSignal.id;
         }
       }
       else if (timeUntilSignal <= 8 && timeUntilSignal > 0 && isFirstSignalOfHour) {
