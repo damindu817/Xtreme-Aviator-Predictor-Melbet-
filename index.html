@@ -305,6 +305,7 @@
     // Create audio context for reliable sound
     let audioContext;
     let beepSound;
+    let lastBeepTime = 0;
     
     function initAudio() {
       try {
@@ -317,7 +318,7 @@
         
         // Create gain node to control volume
         const gainNode = audioContext.createGain();
-        gainNode.gain.value = 0.5;
+        gainNode.gain.value = 0;
         
         // Connect nodes
         oscillator.connect(gainNode);
@@ -336,10 +337,15 @@
     function playBeep() {
       if (!audioContext) initAudio();
       
+      const now = Date.now();
+      // Prevent multiple beeps within 500ms
+      if (now - lastBeepTime < 500) return;
+      lastBeepTime = now;
+      
       try {
-        // Reconnect nodes if needed
-        beepSound.gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
-        beepSound.gainNode.connect(audioContext.destination);
+        // Reset gain to 0 first
+        beepSound.gainNode.gain.cancelScheduledValues(audioContext.currentTime);
+        beepSound.gainNode.gain.setValueAtTime(0, audioContext.currentTime);
         
         // Play beep (300ms duration)
         beepSound.gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
@@ -427,6 +433,7 @@
     let initialLoad = true;
     let lastPlayedSignalId = null;
     let isFirstSignalOfHour = true;
+    let lastSignalStartTime = null;
 
     function applyShineEffect(element) {
       element.classList.add('shine-effect');
