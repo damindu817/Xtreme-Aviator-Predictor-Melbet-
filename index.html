@@ -3,36 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Xtreme Aviator Predictor : Melbet</title>
+  <title>Xtreme Aviator Predictor PRO | Melbet</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+    :root {
+      --primary: #6C5CE7;
+      --primary-dark: #5649C0;
+      --secondary: #00CEFF;
+      --success: #00B894;
+      --warning: #FDCB6E;
+      --danger: #D63031;
+      --dark: #2D3436;
+      --light: #F5F6FA;
+      --text: #E8F0FE;
+      --text-secondary: #B2BEC3;
+      --card-bg: rgba(44, 47, 51, 0.8);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      -webkit-tap-highlight-color: transparent;
+    }
+
     html, body {
       min-height: 100vh;
-      background: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1E1E2E 0%, #2D2D42 100%);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
     }
-    .content { 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      padding-top: 50px; /* Added padding to push content down */
-      padding-bottom: 20px;
+
+    body {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background-attachment: fixed;
     }
+
+    .content {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Header Styles */
     header {
       text-align: center;
-      padding: 1rem;
-      font-size: 1.6rem;
-      font-weight: bold;
-      background: linear-gradient(to right, #ff0000, #8b0000);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      border-radius: 12px;
-      margin: 1rem;
-      margin-top: 30px; /* Increased top margin */
-      border: 2px solid #fff;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+      z-index: 1;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
     }
+
     header::before {
       content: '';
       position: absolute;
@@ -43,89 +79,167 @@
       background: linear-gradient(
         to bottom right,
         rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0.1) 50%,
         rgba(255,255,255,0) 100%
       );
       transform: rotate(30deg);
-      animation: shine 3s infinite;
+      animation: shine 6s infinite;
       opacity: 0;
+      z-index: -1;
     }
-    #liveTime {
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    /* Time Display */
+    .time-display {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 1rem auto;
-      font-size: 1rem;
-      color: #000;
-      background-color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      gap: 15px;
+      background: var(--glass-bg);
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
+
+    .time-section {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .time-section i {
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    .time-section span {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* Signal Box */
+    .signal-container {
+      position: relative;
+      margin-top: 10px;
+    }
+
     .signal-box {
-      margin: 1rem auto;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
+      height: 280px;
+      border-radius: 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border: 3px solid #fff;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(5px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
       position: relative;
     }
-    /* Glow effects */
-    .signal-box.loading {
-      box-shadow: 0 0 20px rgba(173, 216, 255, 0.6),
-                  0 0 40px rgba(173, 216, 255, 0.4),
-                  0 0 60px rgba(173, 216, 255, 0.2);
-      animation: pulse 2s infinite;
+
+    .signal-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(0, 206, 255, 0.1) 100%);
+      opacity: 0;
+      transition: var(--transition);
     }
-    .signal-box.waiting {
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6),
-                  0 0 40px rgba(255, 0, 0, 0.4),
-                  0 0 60px rgba(255, 0, 0, 0.2);
+
+    .signal-box.loading::before {
+      opacity: 1;
+      animation: pulseBackground 3s infinite alternate;
     }
-    .signal-box.active {
-      box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
-                  0 0 40px rgba(0, 255, 0, 0.4),
-                  0 0 60px rgba(0, 255, 0, 0.2);
+
+    .signal-box.waiting::before {
+      opacity: 1;
+      background: linear-gradient(135deg, rgba(253, 203, 110, 0.1) 0%, rgba(225, 112, 85, 0.1) 100%);
     }
+
+    .signal-box.active::before {
+      opacity: 1;
+      background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(0, 206, 255, 0.1) 100%);
+    }
+
     .signal-content {
+      padding: 30px;
       text-align: center;
-      color: #fff;
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      font-size: 1.3rem;
-      padding: 0 1rem;
-      width: 100%;
+      position: relative;
+      z-index: 2;
     }
+
     .signal-time {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid var(--glass-border);
     }
+
+    .countdown-timer {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 10px 0;
+      padding: 10px 20px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-border);
+    }
+
+    .signal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .signal-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    /* Odd Display */
     .odd-display {
       text-align: center;
-      margin: 1.5rem auto;
-      font-size: 1.3rem;
-      color: #fff;
-      background-color: #f4c542;
-      padding: 0.6rem 1.4rem;
-      border-radius: 50px;
-      border: 2px solid #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      padding: 16px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(108, 92, 231, 0.2) 0%, rgba(0, 206, 255, 0.2) 100%);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(5px);
+      box-shadow: var(--shadow);
+      font-size: 1.2rem;
+      font-weight: 600;
       position: relative;
       overflow: hidden;
-      width: 300px;
-      white-space: nowrap;
-      min-height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      transition: var(--transition);
     }
+
     .odd-display::before {
       content: '';
       position: absolute;
@@ -136,40 +250,42 @@
       background: linear-gradient(
         to bottom right,
         rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0.1) 50%,
         rgba(255,255,255,0) 100%
       );
       transform: rotate(30deg);
-      animation: shine 3s infinite;
+      animation: shine 6s infinite;
       opacity: 0;
     }
-    .countdown-timer {
-      font-size: 1.3rem;
-      margin: 0.3rem 0;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      border: 1px solid #fff;
-    }
+
+    /* Buttons */
     .buttons {
       display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
     }
-    .buttons a {
-      text-decoration: none;
-      color: white;
-      padding: 0.6rem 1.2rem;
+
+    .btn {
+      flex: 1;
+      padding: 16px;
       border-radius: 12px;
       font-weight: 600;
-      border: 2px solid #fff;
-      background: linear-gradient(to right, #43e97b, #38f9d7);
-      transition: transform 0.3s;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    .buttons a::before {
+
+    .btn::before {
       content: '';
       position: absolute;
       top: -50%;
@@ -179,196 +295,274 @@
       background: linear-gradient(
         to bottom right,
         rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0.1) 50%,
         rgba(255,255,255,0) 100%
       );
       transform: rotate(30deg);
-      animation: shine 3s infinite;
+      animation: shine 6s infinite;
       opacity: 0;
     }
-    .buttons a.telegram {
-      background: linear-gradient(to right, #667eea, #764ba2);
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
-    .buttons a:hover { 
-      transform: scale(1.05);
-    }
-    .buttons a:hover::before {
+
+    .btn:hover::before {
       opacity: 1;
     }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    }
+
+    .btn-telegram {
+      background: linear-gradient(135deg, #0088CC 0%, #005B8C 100%);
+    }
+
+    .btn-icon {
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
-      font-size: 0.9rem;
-      padding: 1rem;
-      margin-top: 2rem;
+      margin-top: 30px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+      padding: 15px;
     }
+
+    /* Status Indicators */
+    .status-indicator {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 50px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-border);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .status-dot.loading {
+      background: var(--secondary);
+      animation: pulse 1.5s infinite;
+    }
+
+    .status-dot.waiting {
+      background: var(--warning);
+    }
+
+    .status-dot.active {
+      background: var(--success);
+    }
+
+    /* Animations */
     @keyframes shine {
       0% {
-        transform: rotate(30deg) translate(-20%, -20%);
+        transform: rotate(30deg) translate(-30%, -30%);
         opacity: 0;
       }
       20% {
         opacity: 1;
       }
       100% {
-        transform: rotate(30deg) translate(100%, 100%);
+        transform: rotate(30deg) translate(70%, 70%);
         opacity: 0;
       }
     }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulseBackground {
+      0% { opacity: 0.1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 0.1; }
+    }
+
     .shine-effect {
       animation: quickShine 1.5s ease-out;
     }
+
     @keyframes quickShine {
       0% {
         box-shadow: 0 0 5px rgba(255,255,255,0);
       }
       50% {
-        box-shadow: 0 0 20px rgba(255,255,255,0.8);
+        box-shadow: 0 0 20px rgba(255,255,255,0.3);
       }
       100% {
         box-shadow: 0 0 5px rgba(255,255,255,0);
       }
     }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 10px rgba(173, 216, 255, 0.6); }
-      50% { box-shadow: 0 0 20px rgba(173, 216, 255, 0.8); }
-      100% { box-shadow: 0 0 10px rgba(173, 216, 255, 0.6); }
+
+    /* Loading Animation */
+    .loading-dots {
+      display: inline-flex;
+      align-items: center;
+      height: 1em;
     }
 
-    /* Loading Text Style */
-    .loading-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    
-    .loading-title {
-      font-weight: bold;
-      font-size: 1.4rem;
-      color: #fff;
-      text-align: center;
-      line-height: 1.3;
-      margin-bottom: 15px;
-      text-shadow: 0 0 8px rgba(255,255,255,0.3);
-    }
-    
-    .loading-text {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.8);
-      text-align: center;
-      line-height: 1.4;
-      position: relative;
-    }
-    
     .loading-dots::after {
       content: '.';
       animation: dots 1.5s infinite;
+      width: 1em;
+      text-align: left;
     }
-    
+
     @keyframes dots {
       0%, 20% { content: '.'; }
       40% { content: '..'; }
       60%, 100% { content: '...'; }
     }
+
+    /* Responsive Adjustments */
+    @media (max-width: 480px) {
+      .content {
+        gap: 15px;
+      }
+      
+      header h1 {
+        font-size: 1.3rem;
+      }
+      
+      .signal-box {
+        height: 250px;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body oncontextmenu="return false">
   <div class="content">
-    <header>Xtreme Aviator Predictor : Melbet</header>
-    <div id="liveTime">Live time : <span id="time">--:--:--</span> | Date : <span id="date">----</span></div>
-    <div class="signal-box loading" id="signalBox">
-      <div class="signal-content" id="signalContent">
-        <div class="loading-container">
-          <div class="loading-title">PREDICTING<br>NEXT SIGNAL</div>
-          <div class="loading-text">Analyzing game<br>patterns<span class="loading-dots"></span></div>
+    <header>
+      <h1>XTREME AVIATOR PREDICTOR PRO</h1>
+      <p>Premium Signals for Melbet</p>
+    </header>
+
+    <div class="time-display">
+      <div class="time-section">
+        <i class="fas fa-clock"></i>
+        <span id="time">--:--:--</span>
+      </div>
+      <div class="time-section">
+        <i class="fas fa-calendar-alt"></i>
+        <span id="date">--/--/----</span>
+      </div>
+    </div>
+
+    <div class="signal-container">
+      <div class="signal-box loading" id="signalBox">
+        <div class="status-indicator">
+          <div class="status-dot loading"></div>
+          <span>ANALYZING</span>
+        </div>
+        <div class="signal-content" id="signalContent">
+          <div class="signal-title">PREDICTING NEXT SIGNAL</div>
+          <div class="signal-subtitle">Analyzing game patterns<span class="loading-dots"></span></div>
         </div>
       </div>
     </div>
-    <div class="odd-display" id="oddText">Initializing prediction system...</div>
+
+    <div class="odd-display" id="oddText">
+      Initializing prediction system...
+    </div>
+
     <div class="buttons">
-      <a href="#" class="whatsapp">Join WhatsApp</a>
-      <a href="#" class="telegram">Join Telegram</a>
+      <a href="#" class="btn btn-whatsapp">
+        <i class="fab fa-whatsapp btn-icon"></i>
+        WhatsApp Group
+      </a>
+      <a href="#" class="btn btn-telegram">
+        <i class="fab fa-telegram btn-icon"></i>
+        Telegram Channel
+      </a>
     </div>
   </div>
-  <footer>POWERED BY XTREME PREDICTOR</footer>
+
+  <footer>
+    POWERED BY XTREME PREDICTOR TECHNOLOGY | © 2023
+  </footer>
+
   <script>
     const signalBox = document.getElementById("signalBox");
     const signalContent = document.getElementById("signalContent");
     const oddEl = document.getElementById("oddText");
     const timeEl = document.getElementById("time");
     const dateEl = document.getElementById("date");
+    const statusDot = document.querySelector('.status-dot');
 
-    // Audio element for beep sound
-    let beepAudio;
+    // Audio element for notification sounds
+    let audioContext;
+    let gainNode;
+    let oscillator;
     
     function initAudio() {
       try {
-        // Create audio context
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        
-        // Create oscillator for beep sound
-        const oscillator = audioContext.createOscillator();
-        oscillator.type = 'sine';
-        oscillator.frequency.value = 800;
-        
-        // Create gain node to control volume
-        const gainNode = audioContext.createGain();
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioContext.createGain();
         gainNode.gain.value = 0;
-        
-        // Connect nodes
-        oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
-        
-        // Store nodes for later use
-        beepAudio = { oscillator, gainNode, audioContext };
       } catch (e) {
         console.error("Audio initialization failed:", e);
-        // Fallback to simple beep
-        beepAudio = { simpleBeep: true };
       }
     }
     
-    function playBeep() {
-      if (!beepAudio) initAudio();
-      
-      const now = Date.now();
-      // Prevent multiple beeps within 500ms
-      if (now - lastBeepTime < 500) return;
-      lastBeepTime = now;
+    function playNotificationSound(type) {
+      if (!audioContext) initAudio();
+      if (!audioContext) return; // Still failed
       
       try {
-        if (beepAudio.simpleBeep) {
-          // Fallback simple beep
-          const beep = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...');
-          beep.play().catch(e => console.error("Beep play failed:", e));
-          return;
+        // Stop any existing sound
+        if (oscillator) {
+          oscillator.stop();
+          oscillator.disconnect();
         }
         
-        // Reset gain to 0 first
-        beepAudio.gainNode.gain.cancelScheduledValues(beepAudio.audioContext.currentTime);
-        beepAudio.gainNode.gain.setValueAtTime(0, beepAudio.audioContext.currentTime);
+        oscillator = audioContext.createOscillator();
+        oscillator.connect(gainNode);
         
-        // Play beep (300ms duration)
-        beepAudio.oscillator.start();
-        beepAudio.gainNode.gain.setValueAtTime(0.5, beepAudio.audioContext.currentTime);
-        beepAudio.gainNode.gain.exponentialRampToValueAtTime(0.001, beepAudio.audioContext.currentTime + 0.3);
-        
-        // Stop oscillator after beep completes
-        setTimeout(() => {
-          beepAudio.oscillator.stop();
-          // Reinitialize for next beep
-          initAudio();
-        }, 300);
+        // Different sounds for different states
+        if (type === 'loading') {
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+          gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+          oscillator.start();
+          oscillator.stop(audioContext.currentTime + 0.5);
+        } 
+        else if (type === 'signal') {
+          oscillator.type = 'triangle';
+          oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.2);
+          gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
+          oscillator.start();
+          oscillator.stop(audioContext.currentTime + 0.3);
+        }
       } catch (e) {
-        console.error("Beep play failed:", e);
+        console.error("Sound play failed:", e);
       }
     }
-
-    let lastBeepTime = 0;
 
     // Signals data with start time (minutes:seconds), end time (or null), and odds
     const signals = [
@@ -473,11 +667,11 @@
     function showLoadingAnimation() {
       signalBox.className = 'signal-box loading';
       signalContent.innerHTML = `
-        <div class="loading-container">
-          <div class="loading-title">PREDICTING<br>NEXT SIGNAL</div>
-          <div class="loading-text">Analyzing game<br>patterns<span class="loading-dots"></span></div>
-        </div>
+        <div class="signal-title">PREDICTING NEXT SIGNAL</div>
+        <div class="signal-subtitle">Analyzing game patterns<span class="loading-dots"></span></div>
       `;
+      document.querySelector('.status-dot').className = 'status-dot loading';
+      document.querySelector('.status-indicator span').textContent = 'ANALYZING';
     }
 
     function updateDisplay() {
@@ -496,17 +690,16 @@
         loadingStart = now.getTime();
         currentState = 'loading';
         showLoadingAnimation();
-        lastPlayedSignalId = null; // Reset when hour changes
-        isFirstSignalOfHour = true; // Mark first signal of new hour
+        playNotificationSound('loading');
+        lastPlayedSignalId = null;
+        isFirstSignalOfHour = true;
       }
       
       // If no signals for this hour, show empty
       if (currentTimeline.length === 0) {
         signalContent.innerHTML = `
-          <div class="loading-container">
-            <div class="loading-title">NO SIGNALS<br>AVAILABLE</div>
-            <div class="loading-text">Please check back<br>later</div>
-          </div>
+          <div class="signal-title">NO SIGNALS AVAILABLE</div>
+          <div class="signal-subtitle">Please check back later</div>
         `;
         oddEl.innerHTML = 'System idle';
         return;
@@ -531,7 +724,7 @@
       }
       else if (currentState === 'loading') {
         if (now.getTime() - loadingStart < LOADING_DURATION) {
-          oddEl.innerHTML = 'Calculating optimal odds...';
+          oddEl.innerHTML = 'Analyzing game patterns...';
         } else {
           currentState = 'waiting';
           loadingStart = null;
@@ -543,13 +736,17 @@
         loadingStart = now.getTime();
         currentState = 'loading';
         showLoadingAnimation();
-        lastPlayedSignalId = null; // Reset for next signal
-        isFirstSignalOfHour = false; // No longer first signal
+        playNotificationSound('loading');
+        lastPlayedSignalId = null;
+        isFirstSignalOfHour = false;
       }
       else if (now >= currentSignal.startTime && now < currentSignal.endTime) {
         // Currently in active signal period
         currentState = 'active';
         signalBox.className = 'signal-box active';
+        document.querySelector('.status-dot').className = 'status-dot active';
+        document.querySelector('.status-indicator span').textContent = 'ACTIVE SIGNAL';
+        
         signalContent.innerHTML = `
           <div class="signal-time">${currentSignal.displayTime}</div>
           <div class="countdown-timer">Ends in: ${formatTime(timeUntilEnd)}</div>
@@ -557,9 +754,9 @@
         oddEl.textContent = `ODD - ${currentSignal.odd}`;
         applyShineEffect(oddEl);
         
-        // Play beep sound only once when signal becomes active
+        // Play notification sound only once when signal becomes active
         if (lastPlayedSignalId !== currentSignal.id) {
-          playBeep();
+          playNotificationSound('signal');
           lastPlayedSignalId = currentSignal.id;
         }
       }
@@ -567,6 +764,9 @@
         // Waiting for next signal
         currentState = 'waiting';
         signalBox.className = 'signal-box waiting';
+        document.querySelector('.status-dot').className = 'status-dot waiting';
+        document.querySelector('.status-indicator span').textContent = 'WAITING';
+        
         signalContent.innerHTML = `
           <div class="signal-time">${currentSignal.displayTime}</div>
           <div class="countdown-timer">Starts in: ${formatTime(timeUntilSignal)}</div>
@@ -576,9 +776,7 @@
     }
 
     // Initialize audio on first user interaction
-    document.addEventListener('click', () => {
-      initAudio();
-    }, { once: true });
+    document.addEventListener('click', initAudio, { once: true });
 
     // Initialize display
     loadingStart = new Date().getTime();
