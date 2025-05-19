@@ -42,7 +42,7 @@
     body {
       display: flex;
       flex-direction: column;
-      padding: 20px;
+      padding: 10px; /* Reduced padding for better app compatibility */
       background-attachment: fixed;
     }
 
@@ -52,21 +52,23 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px; /* Reduced gap for better app compatibility */
+      padding-top: 5px; /* Added to prevent header cutoff */
     }
 
-    /* Header Styles */
+    /* Header Styles - Adjusted for app */
     header {
       text-align: center;
-      padding: 18px;
+      padding: 15px; /* Slightly reduced padding */
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      border-radius: 16px;
+      border-radius: 14px; /* Slightly smaller radius */
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
       z-index: 1;
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(10px);
+      margin-top: 5px; /* Added margin to prevent cutoff */
     }
 
     header::before {
@@ -89,7 +91,7 @@
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 1.4rem; /* Slightly smaller for app */
       font-weight: 700;
       letter-spacing: 0.5px;
       margin-bottom: 4px;
@@ -97,50 +99,50 @@
     }
 
     header p {
-      font-size: 0.85rem;
+      font-size: 0.8rem; /* Slightly smaller for app */
       opacity: 0.9;
       font-weight: 400;
     }
 
-    /* Time Display */
+    /* Time Display - Adjusted for app */
     .time-display {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 15px;
+      gap: 12px; /* Reduced gap */
       background: var(--glass-bg);
-      border-radius: 12px;
-      padding: 12px;
+      border-radius: 10px; /* Smaller radius */
+      padding: 10px; /* Reduced padding */
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(5px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Lighter shadow */
     }
 
     .time-section {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px; /* Reduced gap */
     }
 
     .time-section i {
-      font-size: 1rem;
+      font-size: 0.9rem; /* Smaller icons */
       opacity: 0.7;
     }
 
     .time-section span {
-      font-size: 0.95rem;
+      font-size: 0.9rem; /* Smaller text */
       font-weight: 500;
     }
 
-    /* Signal Box */
+    /* Signal Box - Adjusted for app */
     .signal-container {
       position: relative;
-      margin-top: 10px;
+      margin-top: 5px; /* Reduced margin */
     }
 
     .signal-box {
-      height: 280px;
-      border-radius: 20px;
+      height: 260px; /* Slightly reduced height */
+      border-radius: 18px; /* Slightly smaller radius */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -179,7 +181,7 @@
     }
 
     .signal-content {
-      padding: 30px;
+      padding: 25px; /* Reduced padding */
       text-align: center;
       width: 100%;
       height: 100%;
@@ -192,52 +194,53 @@
     }
 
     .signal-time {
-      font-size: 1.1rem;
+      font-size: 1rem; /* Slightly smaller */
       font-weight: 600;
-      margin-bottom: 15px;
+      margin-bottom: 12px; /* Reduced margin */
       background: rgba(0, 0, 0, 0.3);
-      padding: 8px 16px;
+      padding: 6px 14px; /* Reduced padding */
       border-radius: 50px;
       border: 1px solid var(--glass-border);
     }
 
     .countdown-timer {
-      font-size: 1.3rem;
+      font-size: 1.2rem; /* Slightly smaller */
       font-weight: 700;
-      margin: 10px 0;
-      padding: 10px 20px;
-      border-radius: 12px;
+      margin: 8px 0; /* Reduced margin */
+      padding: 8px 16px; /* Reduced padding */
+      border-radius: 10px; /* Smaller radius */
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--glass-border);
     }
 
     .signal-title {
-      font-size: 1.5rem;
+      font-size: 1.4rem; /* Slightly smaller */
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px; /* Reduced margin */
       line-height: 1.3;
     }
 
     .signal-subtitle {
-      font-size: 0.95rem;
+      font-size: 0.9rem; /* Slightly smaller */
       opacity: 0.8;
       line-height: 1.5;
     }
 
-    /* Odd Display */
+    /* Odd Display - Adjusted for app */
     .odd-display {
       text-align: center;
-      padding: 16px;
-      border-radius: 16px;
+      padding: 14px; /* Reduced padding */
+      border-radius: 14px; /* Slightly smaller */
       background: linear-gradient(135deg, rgba(108, 92, 231, 0.2) 0%, rgba(0, 206, 255, 0.2) 100%);
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(5px);
       box-shadow: var(--shadow);
-      font-size: 1.2rem;
+      font-size: 1.1rem; /* Slightly smaller */
       font-weight: 600;
       position: relative;
       overflow: hidden;
       transition: var(--transition);
+      margin-bottom: 5px; /* Added margin */
     }
 
     .odd-display::before {
@@ -258,17 +261,18 @@
       opacity: 0;
     }
 
-    /* Buttons */
+    /* Buttons - Adjusted for app */
     .buttons {
       display: flex;
-      gap: 15px;
-      margin-top: 10px;
+      gap: 12px; /* Reduced gap */
+      margin-top: 5px; /* Reduced margin */
+      margin-bottom: 5px; /* Added margin */
     }
 
     .btn {
       flex: 1;
-      padding: 16px;
-      border-radius: 12px;
+      padding: 14px; /* Reduced padding */
+      border-radius: 10px; /* Smaller radius */
       font-weight: 600;
       text-align: center;
       text-decoration: none;
@@ -278,11 +282,12 @@
       transition: var(--transition);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Lighter shadow */
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px; /* Reduced gap */
+      font-size: 0.95rem; /* Slightly smaller text */
     }
 
     .btn::before {
@@ -305,7 +310,7 @@
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* Lighter shadow */
     }
 
     .btn:hover::before {
@@ -321,36 +326,36 @@
     }
 
     .btn-icon {
-      font-size: 1.2rem;
+      font-size: 1.1rem; /* Slightly smaller icons */
     }
 
-    /* Footer */
+    /* Footer - Adjusted for app */
     footer {
       text-align: center;
-      margin-top: 30px;
-      font-size: 0.85rem;
+      margin-top: 15px; /* Reduced margin */
+      font-size: 0.8rem; /* Slightly smaller */
       opacity: 0.7;
-      padding: 15px;
+      padding: 12px; /* Reduced padding */
     }
 
-    /* Status Indicators */
+    /* Status Indicators - Adjusted for app */
     .status-indicator {
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 12px; /* Adjusted position */
+      right: 12px; /* Adjusted position */
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      padding: 4px 10px;
+      gap: 5px; /* Reduced gap */
+      font-size: 0.75rem; /* Smaller text */
+      padding: 3px 8px; /* Reduced padding */
       border-radius: 50px;
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--glass-border);
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px; /* Slightly smaller */
+      height: 7px; /* Slightly smaller */
       border-radius: 50%;
     }
 
@@ -403,7 +408,7 @@
         box-shadow: 0 0 5px rgba(255,255,255,0);
       }
       50% {
-        box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        box-shadow: 0 0 18px rgba(255,255,255,0.3);
       }
       100% {
         box-shadow: 0 0 5px rgba(255,255,255,0);
@@ -430,23 +435,46 @@
       60%, 100% { content: '...'; }
     }
 
-    /* Responsive Adjustments */
+    /* Responsive Adjustments for Android App */
     @media (max-width: 480px) {
       .content {
-        gap: 15px;
+        gap: 12px;
+        padding-top: 0;
+      }
+      
+      header {
+        padding: 12px;
+        border-radius: 12px;
       }
       
       header h1 {
         font-size: 1.3rem;
       }
       
+      header p {
+        font-size: 0.75rem;
+      }
+      
       .signal-box {
-        height: 250px;
+        height: 240px;
+        border-radius: 16px;
+      }
+      
+      .signal-title {
+        font-size: 1.3rem;
+      }
+      
+      .signal-subtitle {
+        font-size: 0.85rem;
       }
       
       .buttons {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
+      }
+      
+      .btn {
+        padding: 12px;
       }
     }
   </style>
@@ -497,11 +525,11 @@
         Telegram Channel
       </a>
     </div>
-  </div>
 
-  <footer>
-    POWERED BY XTREME PREDICTOR TECHNOLOGY | © 2023
-  </footer>
+    <footer>
+      POWERED BY XTREME PREDICTOR TECHNOLOGY | © 2023
+    </footer>
+  </div>
 
   <script>
     const signalBox = document.getElementById("signalBox");
@@ -724,7 +752,7 @@
       }
       else if (currentState === 'loading') {
         if (now.getTime() - loadingStart < LOADING_DURATION) {
-          oddEl.innerHTML = 'Calculating optimal odds...';
+          oddEl.innerHTML = 'Analyzing game patterns...';
         } else {
           currentState = 'waiting';
           loadingStart = null;
