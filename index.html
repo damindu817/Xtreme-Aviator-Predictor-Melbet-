@@ -42,7 +42,7 @@
     body {
       display: flex;
       flex-direction: column;
-      padding: 20px;
+      padding: 30px 20px; /* Increased padding */
       background-attachment: fixed;
     }
 
@@ -52,7 +52,8 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px; /* Increased gap */
+      padding-top: 20px; /* Added padding */
     }
 
     header {
@@ -137,7 +138,7 @@
     /* Signal Box with improved background */
     .signal-container {
       position: relative;
-      margin-top: 10px;
+      margin-top: 15px; /* Increased margin */
     }
 
     .signal-box {
@@ -244,6 +245,7 @@
       position: relative;
       overflow: hidden;
       transition: var(--transition);
+      margin-top: 10px; /* Added margin */
     }
 
     .odd-display::before {
@@ -299,7 +301,7 @@
     .buttons {
       display: flex;
       gap: 15px;
-      margin-top: 10px;
+      margin-top: 15px; /* Increased margin */
     }
 
     .btn {
@@ -363,7 +365,7 @@
 
     footer {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px; /* Increased margin */
       font-size: 0.85rem;
       opacity: 0.7;
       padding: 15px;
@@ -443,8 +445,13 @@
     }
 
     @media (max-width: 480px) {
+      body {
+        padding: 25px 15px; /* Adjusted for mobile */
+      }
+      
       .content {
-        gap: 15px;
+        gap: 20px; /* Adjusted for mobile */
+        padding-top: 15px; /* Adjusted for mobile */
       }
       
       header h1 {
@@ -537,7 +544,9 @@
     let audioContext;
     let gainNode;
     let oscillator;
-    let isSoundEnabled = true;
+    
+    // Load sound preference from localStorage
+    let isSoundEnabled = localStorage.getItem('soundEnabled') !== 'false';
     
     function initAudio() {
       try {
@@ -545,6 +554,11 @@
         gainNode = audioContext.createGain();
         gainNode.gain.value = isSoundEnabled ? 1 : 0;
         gainNode.connect(audioContext.destination);
+        
+        // Update sound control icon based on saved preference
+        soundControl.innerHTML = isSoundEnabled 
+          ? '<i class="fas fa-volume-up"></i>' 
+          : '<i class="fas fa-volume-mute"></i>';
       } catch (e) {
         console.error("Audio initialization failed:", e);
       }
@@ -552,9 +566,14 @@
     
     function toggleSound() {
       isSoundEnabled = !isSoundEnabled;
+      
+      // Save preference to localStorage
+      localStorage.setItem('soundEnabled', isSoundEnabled);
+      
       if (gainNode) {
         gainNode.gain.value = isSoundEnabled ? 1 : 0;
       }
+      
       soundControl.innerHTML = isSoundEnabled 
         ? '<i class="fas fa-volume-up"></i>' 
         : '<i class="fas fa-volume-mute"></i>';
@@ -786,6 +805,13 @@
         oddEl.textContent = `ODD - ${currentSignal.odd}`;
       }
     }
+
+    // Initialize sound control with saved preference
+    document.addEventListener('DOMContentLoaded', () => {
+      soundControl.innerHTML = isSoundEnabled 
+        ? '<i class="fas fa-volume-up"></i>' 
+        : '<i class="fas fa-volume-mute"></i>';
+    });
 
     document.addEventListener('click', initAudio, { once: true });
     soundControl.addEventListener('click', toggleSound);
