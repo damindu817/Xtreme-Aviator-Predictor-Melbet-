@@ -42,7 +42,7 @@
     body {
       display: flex;
       flex-direction: column;
-      padding: 30px 20px; /* Increased padding */
+      padding: 40px 20px 30px; /* Increased top padding */
       background-attachment: fixed;
     }
 
@@ -52,8 +52,9 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 25px; /* Increased gap */
-      padding-top: 20px; /* Added padding */
+      gap: 30px; /* Increased gap */
+      padding-top: 10px; /* Added padding */
+      transform: translateY(20px); /* Shifted down */
     }
 
     header {
@@ -111,6 +112,7 @@
       padding: 12px;
       border: 1px solid var(--glass-border);
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-top: 10px; /* Added margin */
     }
 
     .time-section {
@@ -138,7 +140,7 @@
     /* Signal Box with improved background */
     .signal-container {
       position: relative;
-      margin-top: 15px; /* Increased margin */
+      margin-top: 20px; /* Increased margin */
     }
 
     .signal-box {
@@ -245,7 +247,7 @@
       position: relative;
       overflow: hidden;
       transition: var(--transition);
-      margin-top: 10px; /* Added margin */
+      margin-top: 15px; /* Added margin */
     }
 
     .odd-display::before {
@@ -301,7 +303,7 @@
     .buttons {
       display: flex;
       gap: 15px;
-      margin-top: 15px; /* Increased margin */
+      margin-top: 20px; /* Increased margin */
     }
 
     .btn {
@@ -365,7 +367,7 @@
 
     footer {
       text-align: center;
-      margin-top: 40px; /* Increased margin */
+      margin-top: 50px; /* Increased margin */
       font-size: 0.85rem;
       opacity: 0.7;
       padding: 15px;
@@ -446,12 +448,13 @@
 
     @media (max-width: 480px) {
       body {
-        padding: 25px 15px; /* Adjusted for mobile */
+        padding: 30px 15px 20px; /* Adjusted for mobile */
       }
       
       .content {
-        gap: 20px; /* Adjusted for mobile */
+        gap: 25px; /* Adjusted for mobile */
         padding-top: 15px; /* Adjusted for mobile */
+        transform: translateY(15px); /* Adjusted shift */
       }
       
       header h1 {
@@ -465,6 +468,7 @@
       .buttons {
         flex-direction: column;
         gap: 12px;
+        margin-top: 15px;
       }
       
       .time-section {
@@ -473,6 +477,10 @@
       
       .time-section span {
         min-width: 70px;
+      }
+      
+      footer {
+        margin-top: 40px;
       }
     }
   </style>
