@@ -55,7 +55,6 @@
       gap: 20px;
     }
 
-    /* Header Styles */
     header {
       text-align: center;
       padding: 18px;
@@ -66,7 +65,6 @@
       overflow: hidden;
       z-index: 1;
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(10px);
     }
 
     header::before {
@@ -102,7 +100,6 @@
       font-weight: 400;
     }
 
-    /* Time Display */
     .time-display {
       display: flex;
       justify-content: center;
@@ -112,7 +109,6 @@
       border-radius: 12px;
       padding: 12px;
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(5px);
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
@@ -120,19 +116,25 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      min-width: 120px;
+      justify-content: center;
     }
 
     .time-section i {
       font-size: 1rem;
       opacity: 0.7;
+      width: 16px;
+      text-align: center;
     }
 
     .time-section span {
       font-size: 0.95rem;
       font-weight: 500;
+      min-width: 80px;
+      text-align: center;
     }
 
-    /* Signal Box */
+    /* Signal Box with improved background */
     .signal-container {
       position: relative;
       margin-top: 10px;
@@ -145,37 +147,30 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: var(--glass-bg);
+      background: var(--card-bg);
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(5px);
       box-shadow: var(--shadow);
       overflow: hidden;
       transition: var(--transition);
       position: relative;
     }
 
-    .signal-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(0, 206, 255, 0.1) 100%);
-      opacity: 0;
-      transition: var(--transition);
+    .signal-box.loading {
+      background: linear-gradient(135deg, 
+                rgba(108, 92, 231, 0.2) 0%, 
+                rgba(0, 206, 255, 0.2) 100%);
     }
 
-    .signal-box.loading::before {
-      opacity: 1;
-      animation: pulseBackground 3s infinite alternate;
+    .signal-box.waiting {
+      background: linear-gradient(135deg, 
+                rgba(253, 203, 110, 0.2) 0%, 
+                rgba(225, 112, 85, 0.2) 100%);
     }
 
-    .signal-box.waiting::before {
-      opacity: 1;
-      background: linear-gradient(135deg, rgba(253, 203, 110, 0.1) 0%, rgba(225, 112, 85, 0.1) 100%);
-    }
-
-    .signal-box.active::before {
-      opacity: 1;
-      background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(0, 206, 255, 0.1) 100%);
+    .signal-box.active {
+      background: linear-gradient(135deg, 
+                rgba(0, 184, 148, 0.2) 0%, 
+                rgba(0, 206, 255, 0.2) 100%);
     }
 
     .signal-content {
@@ -201,14 +196,24 @@
       border: 1px solid var(--glass-border);
     }
 
+    .countdown-container {
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+    }
+
     .countdown-timer {
       font-size: 1.3rem;
       font-weight: 700;
-      margin: 10px 0;
       padding: 10px 20px;
       border-radius: 12px;
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--glass-border);
+      min-width: 180px;
+      text-align: center;
     }
 
     .signal-title {
@@ -229,9 +234,10 @@
       text-align: center;
       padding: 16px;
       border-radius: 16px;
-      background: linear-gradient(135deg, rgba(108, 92, 231, 0.2) 0%, rgba(0, 206, 255, 0.2) 100%);
+      background: linear-gradient(135deg, 
+                rgba(108, 92, 231, 0.2) 0%, 
+                rgba(0, 206, 255, 0.2) 100%);
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(5px);
       box-shadow: var(--shadow);
       font-size: 1.2rem;
       font-weight: 600;
@@ -256,9 +262,40 @@
       transform: rotate(30deg);
       animation: shine 6s infinite;
       opacity: 0;
+      z-index: 1;
     }
 
-    /* Buttons */
+    .odd-display:hover::before {
+      opacity: 1;
+    }
+
+    /* Sound Control Button */
+    .sound-control {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+      transition: var(--transition);
+    }
+
+    .sound-control:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .sound-control i {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
     .buttons {
       display: flex;
       gap: 15px;
@@ -324,7 +361,6 @@
       font-size: 1.2rem;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       margin-top: 30px;
@@ -333,7 +369,6 @@
       padding: 15px;
     }
 
-    /* Status Indicators */
     .status-indicator {
       position: absolute;
       top: 15px;
@@ -346,6 +381,7 @@
       border-radius: 50px;
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--glass-border);
+      z-index: 3;
     }
 
     .status-dot {
@@ -367,7 +403,6 @@
       background: var(--success);
     }
 
-    /* Animations */
     @keyframes shine {
       0% {
         transform: rotate(30deg) translate(-30%, -30%);
@@ -388,29 +423,6 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    @keyframes pulseBackground {
-      0% { opacity: 0.1; }
-      50% { opacity: 0.3; }
-      100% { opacity: 0.1; }
-    }
-
-    .shine-effect {
-      animation: quickShine 1.5s ease-out;
-    }
-
-    @keyframes quickShine {
-      0% {
-        box-shadow: 0 0 5px rgba(255,255,255,0);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(255,255,255,0.3);
-      }
-      100% {
-        box-shadow: 0 0 5px rgba(255,255,255,0);
-      }
-    }
-
-    /* Loading Animation */
     .loading-dots {
       display: inline-flex;
       align-items: center;
@@ -430,7 +442,6 @@
       60%, 100% { content: '...'; }
     }
 
-    /* Responsive Adjustments */
     @media (max-width: 480px) {
       .content {
         gap: 15px;
@@ -447,6 +458,14 @@
       .buttons {
         flex-direction: column;
         gap: 12px;
+      }
+      
+      .time-section {
+        min-width: 100px;
+      }
+      
+      .time-section span {
+        min-width: 70px;
       }
     }
   </style>
@@ -472,6 +491,9 @@
 
     <div class="signal-container">
       <div class="signal-box loading" id="signalBox">
+        <div class="sound-control" id="soundControl">
+          <i class="fas fa-volume-up"></i>
+        </div>
         <div class="status-indicator">
           <div class="status-dot loading"></div>
           <span>ANALYZING</span>
@@ -510,29 +532,40 @@
     const timeEl = document.getElementById("time");
     const dateEl = document.getElementById("date");
     const statusDot = document.querySelector('.status-dot');
+    const soundControl = document.getElementById("soundControl");
 
-    // Audio element for notification sounds
     let audioContext;
     let gainNode;
     let oscillator;
+    let isSoundEnabled = true;
     
     function initAudio() {
       try {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         gainNode = audioContext.createGain();
-        gainNode.gain.value = 0;
+        gainNode.gain.value = isSoundEnabled ? 1 : 0;
         gainNode.connect(audioContext.destination);
       } catch (e) {
         console.error("Audio initialization failed:", e);
       }
     }
     
+    function toggleSound() {
+      isSoundEnabled = !isSoundEnabled;
+      if (gainNode) {
+        gainNode.gain.value = isSoundEnabled ? 1 : 0;
+      }
+      soundControl.innerHTML = isSoundEnabled 
+        ? '<i class="fas fa-volume-up"></i>' 
+        : '<i class="fas fa-volume-mute"></i>';
+    }
+    
     function playNotificationSound(type) {
+      if (!isSoundEnabled) return;
       if (!audioContext) initAudio();
-      if (!audioContext) return; // Still failed
+      if (!audioContext) return;
       
       try {
-        // Stop any existing sound
         if (oscillator) {
           oscillator.stop();
           oscillator.disconnect();
@@ -541,7 +574,6 @@
         oscillator = audioContext.createOscillator();
         oscillator.connect(gainNode);
         
-        // Different sounds for different states
         if (type === 'loading') {
           oscillator.type = 'sine';
           oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
@@ -564,7 +596,6 @@
       }
     }
 
-    // Signals data with start time (minutes:seconds), end time (or null), and odds
     const signals = [
       { start: "01:00", end: "02:00", odd: "5× | 6× | 7×" },
       { start: "05:00", end: "06:00", odd: "4×" },
@@ -585,7 +616,6 @@
       { start: "57:00", end: "58:00", odd: "4× | 5× | 6× | 7×" }
     ];
 
-    // Generate timeline for current hour
     function generateTimelineForCurrentHour(currentHour) {
       const timeline = [];
       
@@ -594,24 +624,19 @@
         const startTime = new Date(now);
         const endTime = new Date(now);
         
-        // Parse start time (minutes:seconds)
         const [startMin, startSec] = signal.start.split(":").map(Number);
         startTime.setHours(currentHour, startMin, startSec, 0);
         
-        // Parse end time (use start time + 1 minute if end is null)
         const endStr = signal.end || signal.start;
         const [endMin, endSec] = endStr.split(":").map(Number);
         endTime.setHours(currentHour, endMin, endSec, 0);
         
-        // If end is null, add 1 minute to end time
         if (!signal.end) {
           endTime.setMinutes(endTime.getMinutes() + 1);
         } else {
-          // Add 1 minute to display end time (shows until XX:XX+1:00)
           endTime.setMinutes(endTime.getMinutes() + 1);
         }
         
-        // Create display time
         const displayTime = signal.end 
           ? `${currentHour.toString().padStart(2, '0')}:${signal.start} - ${currentHour.toString().padStart(2, '0')}:${signal.end}`
           : `${currentHour.toString().padStart(2, '0')}:${signal.start}`;
@@ -622,32 +647,24 @@
           endTime,
           originalEnd: signal.end ? new Date(endTime.getTime() - 60000) : new Date(endTime.getTime() - 60000),
           odd: signal.odd,
-          id: `${currentHour}:${signal.start}` // Unique ID for each signal
+          id: `${currentHour}:${signal.start}`
         });
       });
 
-      // Sort timeline by start time
       timeline.sort((a, b) => a.startTime - b.startTime);
       
       return timeline;
     }
 
-    // Current state
     let currentTimeline = [];
     let currentSignalIndex = -1;
     let loadingStart = null;
-    const LOADING_DURATION = 8000; // 8 seconds
+    const LOADING_DURATION = 8000;
     let lastHourChecked = -1;
-    let currentState = 'initial-loading'; // 'initial-loading', 'loading', 'active', 'waiting'
+    let currentState = 'initial-loading';
     let initialLoad = true;
     let lastPlayedSignalId = null;
     let isFirstSignalOfHour = true;
-    let lastSignalStartTime = null;
-
-    function applyShineEffect(element) {
-      element.classList.add('shine-effect');
-      setTimeout(() => element.classList.remove('shine-effect'), 1500);
-    }
 
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
@@ -678,11 +695,9 @@
       const now = new Date();
       const currentHour = now.getHours();
       
-      // Update current time display
       timeEl.textContent = now.toTimeString().split(' ')[0];
       dateEl.textContent = now.toLocaleDateString('en-GB');
       
-      // Regenerate timeline if hour has changed
       if (currentHour !== lastHourChecked) {
         currentTimeline = generateTimelineForCurrentHour(currentHour);
         currentSignalIndex = findCurrentSignalIndex(currentTimeline, now);
@@ -695,7 +710,6 @@
         isFirstSignalOfHour = true;
       }
       
-      // If no signals for this hour, show empty
       if (currentTimeline.length === 0) {
         signalContent.innerHTML = `
           <div class="signal-title">NO SIGNALS AVAILABLE</div>
@@ -712,7 +726,6 @@
       const timeUntilSignal = Math.floor((currentSignal.startTime - now) / 1000);
       const timeUntilEnd = Math.floor((currentSignal.endTime - now) / 1000);
       
-      // STATE MANAGEMENT
       if (currentState === 'initial-loading') {
         if (now.getTime() - loadingStart < LOADING_DURATION) {
           oddEl.innerHTML = 'Initializing prediction system...';
@@ -731,7 +744,6 @@
         }
       }
       else if (now >= currentSignal.endTime) {
-        // Signal ended, show loading for next signal
         currentSignalIndex = nextSignalIndex;
         loadingStart = now.getTime();
         currentState = 'loading';
@@ -741,7 +753,6 @@
         isFirstSignalOfHour = false;
       }
       else if (now >= currentSignal.startTime && now < currentSignal.endTime) {
-        // Currently in active signal period
         currentState = 'active';
         signalBox.className = 'signal-box active';
         document.querySelector('.status-dot').className = 'status-dot active';
@@ -749,19 +760,18 @@
         
         signalContent.innerHTML = `
           <div class="signal-time">${currentSignal.displayTime}</div>
-          <div class="countdown-timer">Ends in: ${formatTime(timeUntilEnd)}</div>
+          <div class="countdown-container">
+            <div class="countdown-timer">Ends in: ${formatTime(timeUntilEnd)}</div>
+          </div>
         `;
         oddEl.textContent = `ODD - ${currentSignal.odd}`;
-        applyShineEffect(oddEl);
         
-        // Play notification sound only once when signal becomes active
         if (lastPlayedSignalId !== currentSignal.id) {
           playNotificationSound('signal');
           lastPlayedSignalId = currentSignal.id;
         }
       }
       else {
-        // Waiting for next signal
         currentState = 'waiting';
         signalBox.className = 'signal-box waiting';
         document.querySelector('.status-dot').className = 'status-dot waiting';
@@ -769,16 +779,17 @@
         
         signalContent.innerHTML = `
           <div class="signal-time">${currentSignal.displayTime}</div>
-          <div class="countdown-timer">Starts in: ${formatTime(timeUntilSignal)}</div>
+          <div class="countdown-container">
+            <div class="countdown-timer">Starts in: ${formatTime(timeUntilSignal)}</div>
+          </div>
         `;
         oddEl.textContent = `ODD - ${currentSignal.odd}`;
       }
     }
 
-    // Initialize audio on first user interaction
     document.addEventListener('click', initAudio, { once: true });
+    soundControl.addEventListener('click', toggleSound);
 
-    // Initialize display
     loadingStart = new Date().getTime();
     currentState = 'initial-loading';
     showLoadingAnimation();
