@@ -42,7 +42,7 @@
     body {
       display: flex;
       flex-direction: column;
-      padding: 40px 20px 20px; /* Reduced bottom padding */
+      padding: 20px;
       background-attachment: fixed;
     }
 
@@ -52,7 +52,7 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 25px;
+      gap: 15px;
     }
 
     header {
@@ -110,7 +110,6 @@
       padding: 12px;
       border: 1px solid var(--glass-border);
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      margin-top: 10px;
     }
 
     .time-section {
@@ -135,10 +134,10 @@
       text-align: center;
     }
 
-    /* Signal Box with improved background */
+    /* Signal Box */
     .signal-container {
       position: relative;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     .signal-box {
@@ -245,63 +244,15 @@
       position: relative;
       overflow: hidden;
       transition: var(--transition);
-      margin-top: 10px;
+      margin-top: 5px; /* Reduced margin */
     }
 
-    .odd-display::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.1) 50%,
-        rgba(255,255,255,0) 100%
-      );
-      transform: rotate(30deg);
-      animation: shine 6s infinite;
-      opacity: 0;
-      z-index: 1;
-    }
-
-    .odd-display:hover::before {
-      opacity: 1;
-    }
-
-    /* Sound Control Button */
-    .sound-control {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--glass-border);
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 3;
-      transition: var(--transition);
-    }
-
-    .sound-control:hover {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .sound-control i {
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-
+    /* Buttons - Moved closer to odd display */
     .buttons {
       display: flex;
       gap: 15px;
-      margin-top: 15px;
+      margin-top: 5px; /* Reduced margin */
+      margin-bottom: 10px;
     }
 
     .btn {
@@ -365,10 +316,37 @@
 
     footer {
       text-align: center;
-      margin-top: 30px; /* Reduced from 50px */
+      margin-top: 15px; /* Reduced margin */
       font-size: 0.85rem;
       opacity: 0.7;
       padding: 15px;
+    }
+
+    /* Sound Control Button */
+    .sound-control {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+      transition: var(--transition);
+    }
+
+    .sound-control:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .sound-control i {
+      font-size: 0.9rem;
+      color: var(--text);
     }
 
     .status-indicator {
@@ -446,11 +424,11 @@
 
     @media (max-width: 480px) {
       body {
-        padding: 30px 15px 15px; /* Adjusted for mobile */
+        padding: 15px;
       }
       
       .content {
-        gap: 20px;
+        gap: 12px;
       }
       
       header h1 {
@@ -463,7 +441,8 @@
       
       .buttons {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
+        margin-top: 5px;
       }
       
       .time-section {
@@ -475,7 +454,7 @@
       }
       
       footer {
-        margin-top: 25px; /* Adjusted for mobile */
+        margin-top: 10px;
       }
     }
   </style>
@@ -529,11 +508,11 @@
         Telegram Channel
       </a>
     </div>
-  </div>
 
-  <footer>
-    POWERED BY XTREME PREDICTOR TECHNOLOGY | © 2023
-  </footer>
+    <footer>
+      POWERED BY XTREME PREDICTOR TECHNOLOGY | © 2023
+    </footer>
+  </div>
 
   <script>
     const signalBox = document.getElementById("signalBox");
