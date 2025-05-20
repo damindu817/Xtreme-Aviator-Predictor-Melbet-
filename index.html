@@ -33,6 +33,7 @@
 
     html {
       height: 100%;
+      overflow: hidden;
     }
 
     body {
@@ -44,6 +45,8 @@
       background-attachment: fixed;
       display: flex;
       flex-direction: column;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .content {
@@ -519,7 +522,7 @@
     </div>
 
     <div class="odd-display" id="oddText">
-      Initializing prediction system...
+      Calculating optimal odds...
     </div>
 
     <div class="buttons">
