@@ -202,7 +202,7 @@
     /* New Signal Time Display */
     .signal-time-display {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -215,7 +215,7 @@
       padding: 10px 20px;
       border-radius: 50px;
       border: 1px solid var(--glass-border);
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -232,28 +232,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 15px 0;
+      margin: 10px 0;
     }
 
     .countdown-header {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       opacity: 0.8;
     }
 
     .countdown-timer {
-      font-family: 'Courier New', monospace;
-      font-size: 1.8rem;
-      font-weight: 700;
-      padding: 15px 25px;
-      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 8px;
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--glass-border);
-      min-width: 220px;
+      min-width: 150px;
       text-align: center;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       position: relative;
       overflow: hidden;
     }
@@ -530,20 +530,6 @@
       60%, 100% { content: '...'; }
     }
 
-    /* Next Signal Indicator */
-    .next-signal-indicator {
-      position: absolute;
-      bottom: 15px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-
     @media (max-width: 480px) {
       .app-container {
         padding: 15px;
@@ -576,9 +562,9 @@
       }
 
       .countdown-timer {
-        font-size: 1.5rem;
-        min-width: 180px;
-        padding: 12px 20px;
+        font-size: 1.1rem;
+        min-width: 140px;
+        padding: 6px 12px;
       }
 
       .signal-time-range {
@@ -641,7 +627,7 @@
       </div>
 
       <footer>
-        POWERED BY XTREME PREDICTOR TECHNOLOGY | © 2023
+        POWERED BY XTREME PREDICTOR
       </footer>
     </div>
   </div>
@@ -903,9 +889,6 @@
             <div class="countdown-header">Signal Ends In</div>
             <div class="countdown-timer">${formatTime(timeUntilEnd)}</div>
           </div>
-          <div class="next-signal-indicator">
-            <i class="fas fa-arrow-right"></i> Next: ${nextSignal.displayTime}
-          </div>
         `;
         oddEl.innerHTML = `<i class="fas fa-chart-line odd-icon"></i><span>ODD - ${currentSignal.odd}</span>`;
         
@@ -930,9 +913,6 @@
           <div class="countdown-container">
             <div class="countdown-header">Signal Starts In</div>
             <div class="countdown-timer">${formatTime(timeUntilSignal)}</div>
-          </div>
-          <div class="next-signal-indicator">
-            <i class="fas fa-arrow-right"></i> Next: ${nextSignal.displayTime}
           </div>
         `;
         oddEl.innerHTML = `<i class="fas fa-chart-line odd-icon"></i><span>ODD - ${currentSignal.odd}</span>`;
